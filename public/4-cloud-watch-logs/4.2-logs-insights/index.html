@@ -3,7 +3,7 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.150.0">
+    <meta name="generator" content="Hugo 0.152.2">
     <meta name="description" content="">
 <meta name="author" content="journeyoftheaverageguy@gmail.com">
 
@@ -12,21 +12,21 @@
     <title>CloudWatch Logs Insights :: AWS Account Setup</title>
 
     
-    <link href="//localhost:1313/css/nucleus.css?1759254390" rel="stylesheet">
-    <link href="//localhost:1313/css/fontawesome-all.min.css?1759254390" rel="stylesheet">
-    <link href="//localhost:1313/css/hybrid.css?1759254390" rel="stylesheet">
-    <link href="//localhost:1313/css/featherlight.min.css?1759254390" rel="stylesheet">
-    <link href="//localhost:1313/css/perfect-scrollbar.min.css?1759254390" rel="stylesheet">
-    <link href="//localhost:1313/css/auto-complete.css?1759254390" rel="stylesheet">
-    <link href="//localhost:1313/css/atom-one-dark-reasonable.css?1759254390" rel="stylesheet">
-    <link href="//localhost:1313/css/theme.css?1759254390" rel="stylesheet">
-    <link href="//localhost:1313/css/hugo-theme.css?1759254390" rel="stylesheet">
+    <link href="//localhost:1313/css/nucleus.css?1765465030" rel="stylesheet">
+    <link href="//localhost:1313/css/fontawesome-all.min.css?1765465030" rel="stylesheet">
+    <link href="//localhost:1313/css/hybrid.css?1765465030" rel="stylesheet">
+    <link href="//localhost:1313/css/featherlight.min.css?1765465030" rel="stylesheet">
+    <link href="//localhost:1313/css/perfect-scrollbar.min.css?1765465030" rel="stylesheet">
+    <link href="//localhost:1313/css/auto-complete.css?1765465030" rel="stylesheet">
+    <link href="//localhost:1313/css/atom-one-dark-reasonable.css?1765465030" rel="stylesheet">
+    <link href="//localhost:1313/css/theme.css?1765465030" rel="stylesheet">
+    <link href="//localhost:1313/css/hugo-theme.css?1765465030" rel="stylesheet">
     
-    <link href="//localhost:1313/css/theme-workshop.css?1759254390" rel="stylesheet">
+    <link href="//localhost:1313/css/theme-workshop.css?1765465030" rel="stylesheet">
     
     
 
-    <script src="//localhost:1313/js/jquery-3.3.1.min.js?1759254390"></script>
+    <script src="//localhost:1313/js/jquery-3.3.1.min.js?1765465030"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -55,8 +55,8 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="//localhost:1313/js/lunr.min.js?1759254390"></script>
-<script type="text/javascript" src="//localhost:1313/js/auto-complete.js?1759254390"></script>
+<script type="text/javascript" src="//localhost:1313/js/lunr.min.js?1765465030"></script>
+<script type="text/javascript" src="//localhost:1313/js/auto-complete.js?1765465030"></script>
 <script type="text/javascript">
     
         
@@ -64,7 +64,7 @@
         
     
 </script>
-<script type="text/javascript" src="//localhost:1313/js/search.js?1759254390"></script>
+<script type="text/javascript" src="//localhost:1313/js/search.js?1765465030"></script>
  
   </div>
 
@@ -417,6 +417,7 @@
     <left>
         <br>
         <br>
+        <br>
         <b> Team </b>
         <br/>
         <i>
@@ -430,6 +431,11 @@
         <i>
             <a href="https://www.linkedin.com/in/anh-tuan-nguyen-08a550224"  style="color:orange">Anh Tuấn</a>
         </i>
+        <br/>
+        <i>
+            <a href="https://www.linkedin.com/in/%E1%BA%A5n-nguy%E1%BB%85n-57b55a35a/"  style="color:orange">Nguyễn Ấn</a>
+        </i>
+        
     </left>
 
 <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -489,9 +495,9 @@
     <li>
       <ul>
         <li><a href="#cloudwatch-logs-insights">CloudWatch Logs Insights</a></li>
-        <li><a href="#trực-quan-hóa-truy-vấn-log">Trực quan hóa truy vấn log</a></li>
-        <li><a href="#lưu-lệnh-truy-vấn">Lưu lệnh truy vấn</a></li>
-        <li><a href="#lịch-sử-truy-vấn">Lịch sử truy vấn</a></li>
+        <li><a href="#visualizing-log-queries">Visualizing Log Queries</a></li>
+        <li><a href="#saving-queries">Saving Queries</a></li>
+        <li><a href="#query-history">Query History</a></li>
       </ul>
     </li>
   </ul>
@@ -520,96 +526,105 @@
 
 
 	<h3 id="cloudwatch-logs-insights">CloudWatch Logs Insights</h3>
-<p>Trong phần này, chúng ta sẽ tạo log từ một ứng dụng và sau đó truy vấn các log này trong <strong>CloudWatch Logs Insights</strong>. Mình sẽ chọn một <strong>EC2 instance</strong> làm mẫu.</p>
+<p>In this section, we will create logs from an application and then query these logs using <strong>CloudWatch Logs Insights</strong>. We’ll use an <strong>EC2 instance</strong> as an example.</p>
 <ol>
 <li>
-<p>Trên thanh tìm kiếm dịch vụ:</p>
+<p>In the service search bar:</p>
 <ul>
-<li>Nhập <code>EC2</code>.</li>
-<li>Chọn <strong>EC2</strong>.</li>
+<li>Type <code>EC2</code>.</li>
+<li>Select <strong>EC2</strong>.</li>
 </ul>
 </li>
 </ol>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.1.png" alt="4.2.1"></p>
 <ol start="2">
 <li>
-<p>Trong <strong>EC2 Console</strong>, truy cập vào trang <strong>Instances</strong>:</p>
+<p>In the <strong>EC2 Console</strong>, go to the <strong>Instances</strong> page:</p>
 <ul>
-<li>Chọn một instance bất kỳ (ở đây mình chọn <code>Instance-A</code>).</li>
-<li>Ấn chọn <strong>Connect</strong>.</li>
+<li>Select any instance (here we select <code>Instance-A</code>).</li>
+<li>Click <strong>Connect</strong>.</li>
 </ul>
 </li>
 </ol>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.2.png" alt="4.2.2"></p>
 <ol start="3">
 <li>
-<p>Trong trang <strong>Connect to instance</strong>:</p>
+<p>On the <strong>Connect to instance</strong> page:</p>
 <ul>
-<li>Chuyển sang tab <strong>Session Manager</strong>.</li>
-<li>Nhấn <strong>Connect</strong>.</li>
+<li>Switch to the <strong>Session Manager</strong> tab.</li>
+<li>Click <strong>Connect</strong>.</li>
 </ul>
 </li>
 </ol>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.3.png" alt="4.2.3"></p>
 <ol start="4">
 <li>
-<p>Đợi một lúc, một <strong>Terminal</strong> sẽ hiện lên:</p>
+<p>Wait a few seconds, and a <strong>Terminal</strong> will appear:</p>
 <ul>
-<li>Di chuyển vào thư mục <code>/tmp</code>.</li>
-<li>Tải xuống script Python từ S3 bucket.</li>
+<li>Navigate to the <code>/tmp</code> directory.</li>
+<li>Download the Python script from your S3 bucket:</li>
 </ul>
 </li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /tmp
-</span></span><span style="display:flex;"><span>sudo aws s3 cp s3://workshop-template-bucket/logger.py .
-</span></span></code></pre></div><p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.4.png" alt="4.2.4"></p>
+</span></span><span style="display:flex;"><span>sudo aws s3 cp s3://&lt;workshop-template-bucket&gt;/logger.py .
+</span></span></code></pre></div><ul>
+<li>Replace <!-- raw HTML omitted --> with the name of the bucket you created in Section 2.</li>
+</ul>
+<p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.4.png" alt="4.2.4"></p>
 <ol start="5">
-<li>Cấp quyền thực thi và chạy script:</li>
+<li>Grant execution permission and run the script:</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo chmod +x logger.py
 </span></span><span style="display:flex;"><span>python3 logger.py &amp;
 </span></span></code></pre></div><p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.5.png" alt="4.2.5"></p>
 <ol start="6">
-<li>Kiểm tra các logger đang chạy dưới dạng process:</li>
+<li>Check the running logger processes:</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ps -aux | grep logger
-</span></span></code></pre></div><p>Hiện tại có 2 process đang chạy, chúng sẽ chạy cho đến khi kết thúc bài thực hành.</p>
+</span></span></code></pre></div><p>There are currently two processes running. They will keep running until the end of this lab.</p>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.6.png" alt="4.2.6"></p>
 <ol start="7">
-<li>In ra các dòng log từ file <code>/var/log/messages</code>, nó sẽ chạy liên tục cho đến khi bị hủy:</li>
+<li>Print log lines from <code>/var/log/messages</code>. This command will keep running until you stop it:</li>
 </ol>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo tail -f /var/log/messages
 </span></span></code></pre></div><p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.7.png" alt="4.2.7"></p>
 <ol start="8">
-<li>Trở lại <strong>CloudWatch Console</strong>, vào <strong>Logs Insights</strong> từ menu bên trái để truy vấn log.</li>
+<li>Go back to the CloudWatch Console and open Logs Insights from the left menu.</li>
 </ol>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.8.png" alt="4.2.8"></p>
 <ol start="9">
-<li>Trong <strong>Selection criteria</strong>, tìm <code>/ec2</code> và chọn <strong>/ec2/linux/var/log/messages</strong>.</li>
+<li>In the <strong>Selection criteria</strong>, search for <code>/ec2</code> and select <strong>/ec2/linux/var/log/messages</strong></li>
 </ol>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.9.png" alt="4.2.9"></p>
 <ol start="10">
-<li>Nhập câu truy vấn sau và nhấn <strong>Run query</strong>:</li>
+<li>Enter the following query and click Run query:</li>
 </ol>
 <pre tabindex="0"><code>fields @timestamp, @message
 | sort @timestamp desc
 | limit 20
-</code></pre><p>Kết quả hiển thị như sau:</p>
+</code></pre><ul>
+<li>You should see a result similar to this:</li>
+</ul>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.10.png" alt="4.2.10"></p>
-<p>Đây chính là các log chúng ta vừa tạo.</p>
+<ul>
+<li>These are the logs that were just generated.</li>
+</ul>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.11.png" alt="4.2.11"></p>
 <ol start="11">
-<li>Truy vấn log có chứa <strong>ERROR</strong>:</li>
+<li>Query logs containing ERROR:</li>
 </ol>
 <pre tabindex="0"><code>fields @timestamp, @message
 | filter @message like /ERROR/
 | sort @timestamp desc
 | limit 20
 </code></pre><p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.12.png" alt="4.2.12"></p>
-<p>Đây là các log lỗi mà chúng ta đã tạo.</p>
+<ul>
+<li>These are the error logs we generated earlier.</li>
+</ul>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.13.png" alt="4.2.13"></p>
 <ol start="12">
-<li>Truy vấn log có chứa <strong>WARN</strong>:</li>
+<li>Query logs containing WARN:</li>
 </ol>
 <pre tabindex="0"><code>fields @timestamp, @message
 | filter @message like /WARN/
@@ -617,11 +632,11 @@
 | limit 20
 </code></pre><p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.14.png" alt="4.2.14"></p>
 <ol start="13">
-<li>Truy vấn lại log lỗi để xem log mới tạo:</li>
+<li>Re-run the error log query to see newly generated logs:</li>
 </ol>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.15.png" alt="4.2.15"></p>
 <ol start="14">
-<li>Truy vấn theo từ khóa khác (<code>eth0</code>):</li>
+<li>Query by another keyword (<code>eth0</code>):</li>
 </ol>
 <pre tabindex="0"><code>fields @timestamp, @message
 | filter @message like /eth0/
@@ -629,40 +644,50 @@
 | stats count (*) by bin()
 </code></pre><p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.16.png" alt="4.2.16"></p>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.17.png" alt="4.2.17"></p>
-<h3 id="trực-quan-hóa-truy-vấn-log">Trực quan hóa truy vấn log</h3>
-<p>Chúng ta có thể xem biểu đồ của các truy vấn bằng cách chuyển sang tab <strong>Visualization</strong>.</p>
+<h3 id="visualizing-log-queries">Visualizing Log Queries</h3>
+<p>You can view query results as charts by switching to the <strong>Visualization</strong> tab.</p>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.18.png" alt="4.2.18"></p>
-<h3 id="lưu-lệnh-truy-vấn">Lưu lệnh truy vấn</h3>
-<p>Logs Insights hỗ trợ lưu truy vấn để sử dụng lại sau này.</p>
+<h3 id="saving-queries">Saving Queries</h3>
+<p>Logs Insights allows you to save queries for later use.</p>
 <ol>
-<li>
-<p>Ví dụ, lưu truy vấn <strong>ERROR logs</strong>:</p>
-<ul>
-<li>Quay lại Logs Insights.</li>
-<li>Nhập lại truy vấn <strong>ERROR logs</strong>.</li>
-<li>Nhấn <strong>Save</strong>.</li>
-</ul>
-</li>
+<li>For example, to save the <strong>ERROR</strong> logs query:</li>
 </ol>
+<ul>
+<li>
+<p>Go back to <strong>Logs Insights</strong>.</p>
+</li>
+<li>
+<p>Re-enter the <strong>ERROR</strong> logs query.</p>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+</li>
+</ul>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.19.png" alt="4.2.19"></p>
 <ol start="2">
-<li>
-<p>Trong <strong>Save a new query</strong>, điền thông tin:</p>
-<ul>
-<li><strong>Query name</strong>: <code>Errors</code></li>
-<li><strong>Folder</strong>: <code>cloudwatch-workshop</code> (chọn <strong>Create new</strong>)</li>
-<li>Kiểm tra lại thông tin trong <strong>Query definition details</strong>.</li>
-<li>Nhấn <strong>Save</strong>.</li>
-</ul>
-</li>
+<li>In the <strong>Save a new query</strong> dialog, fill in the information:</li>
 </ol>
+<ul>
+<li>
+<p>Query name: <code>Errors</code>.</p>
+</li>
+<li>
+<p><strong>Folder</strong>: <code>cloudwatch-workshop</code> (create a new one if needed).</p>
+</li>
+<li>
+<p>Check the <strong>Query definition details</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+</li>
+</ul>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.20.png" alt="4.2.20"></p>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.21.png" alt="4.2.21"></p>
-<h3 id="lịch-sử-truy-vấn">Lịch sử truy vấn</h3>
-<p>Logs Insights cho phép xem lại lịch sử truy vấn. Trong giao diện, chọn <strong>History</strong> (dưới Query editor).</p>
+<h3 id="query-history">Query History</h3>
+<p>Logs Insights provides a query history feature. You can view it by selecting <strong>History</strong> below the Query editor.</p>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.22.png" alt="4.2.22"></p>
 <p><img src="//localhost:1313/images/4-cloud-watch-logs/4.2-logs-insights/4.2.23.png" alt="4.2.23"></p>
-<p>Trong phần tiếp theo, chúng ta sẽ tạo <strong>Metrics Filter</strong>, chuyển log thành <strong>Metric</strong>, và thiết lập <strong>Alarm</strong>.</p>
+<p>n the next section, we will create a <strong>Metrics Filter</strong>, convert logs into <strong>Metrics</strong>, and set up an <strong>Alarm</strong>.</p>
 
 
 
@@ -959,19 +984,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="//localhost:1313/js/clipboard.min.js?1759254390"></script>
-    <script src="//localhost:1313/js/perfect-scrollbar.min.js?1759254390"></script>
-    <script src="//localhost:1313/js/perfect-scrollbar.jquery.min.js?1759254390"></script>
-    <script src="//localhost:1313/js/jquery.sticky.js?1759254390"></script>
-    <script src="//localhost:1313/js/featherlight.min.js?1759254390"></script>
-    <script src="//localhost:1313/js/highlight.pack.js?1759254390"></script>
+    <script src="//localhost:1313/js/clipboard.min.js?1765465032"></script>
+    <script src="//localhost:1313/js/perfect-scrollbar.min.js?1765465032"></script>
+    <script src="//localhost:1313/js/perfect-scrollbar.jquery.min.js?1765465032"></script>
+    <script src="//localhost:1313/js/jquery.sticky.js?1765465032"></script>
+    <script src="//localhost:1313/js/featherlight.min.js?1765465032"></script>
+    <script src="//localhost:1313/js/highlight.pack.js?1765465032"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="//localhost:1313/js/modernizr.custom-3.6.0.js?1759254390"></script>
-    <script src="//localhost:1313/js/learn.js?1759254390"></script>
-    <script src="//localhost:1313/js/hugo-learn.js?1759254390"></script>
+    <script src="//localhost:1313/js/modernizr.custom-3.6.0.js?1765465032"></script>
+    <script src="//localhost:1313/js/learn.js?1765465032"></script>
+    <script src="//localhost:1313/js/hugo-learn.js?1765465032"></script>
 
-    <link href="//localhost:1313/mermaid/mermaid.css?1759254390" rel="stylesheet" />
-    <script src="//localhost:1313/mermaid/mermaid.js?1759254390"></script>
+    <link href="//localhost:1313/mermaid/mermaid.css?1765465032" rel="stylesheet" />
+    <script src="//localhost:1313/mermaid/mermaid.js?1765465032"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

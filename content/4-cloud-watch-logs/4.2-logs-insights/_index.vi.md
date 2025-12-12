@@ -40,7 +40,7 @@ Trong phần này thì chúng ta sẽ thực hiện tạo logs từ một ứng 
 cd /tmp
 sudo aws s3 cp s3://<workshop-template-bucket>/logger.py .
 ```
-   Trong đó <workshop-template-bucket> là tên bucket bạn đã tạo ở phần 2
+   - Trong đó <workshop-template-bucket> là tên bucket bạn đã tạo ở phần 2
 
 ![4.2.4](/images/4-cloud-watch-logs/4.2-logs-insights/4.2.4.png)
 
