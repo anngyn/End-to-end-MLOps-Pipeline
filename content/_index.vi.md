@@ -8,7 +8,7 @@ chapter: false
 
 Workshop này chuyển nội dung trong AWS Machine Learning Blog thành bài lab thực hành. Bạn sẽ tạo custom Amazon SageMaker project template để kết nối GitHub và GitHub Actions với SageMaker Pipelines, SageMaker Model Registry, staging deployment, và bước duyệt production.
 
-![Kiến trúc MLOps](/images/mlops-sagemaker-github-actions/architecture.svg)
+![Kiến trúc MLOps](/images/architecture.png)
 
 {{< mermaid >}}
 flowchart LR
