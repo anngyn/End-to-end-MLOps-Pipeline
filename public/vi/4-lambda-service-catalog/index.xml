@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lambda và Service Catalog on MLOps với SageMaker và GitHub Actions</title>
+    <link>https://anngyn.github.io/End-to-end-MLOps-Pipeline-/vi/4-lambda-service-catalog/</link>
+    <description>Recent content in Lambda và Service Catalog on MLOps với SageMaker và GitHub Actions</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <atom:link href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/vi/4-lambda-service-catalog/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

@@ -2,208 +2,124 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:1313/</loc>
+    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline-/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/vi/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/"
                 />
   </url><url>
-    <loc>//localhost:1313/4-cloud-watch-logs/4.1-logs/</loc>
+    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline-/1-introduction/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/4-cloud-watch-logs/4.1-logs/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/vi/1-introduction/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/4-cloud-watch-logs/4.1-logs/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/1-introduction/"
                 />
   </url><url>
-    <loc>//localhost:1313/1-introduction/</loc>
+    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline-/2-preparatory-steps/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/1-introduction/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/vi/2-preparatory-steps/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/1-introduction/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/2-preparatory-steps/"
                 />
   </url><url>
-    <loc>//localhost:1313/3-cloud-watch-metric/3.1-view-metrics/</loc>
+    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline-/3-github-aws-setup/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/3-cloud-watch-metric/3.1-view-metrics/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/vi/3-github-aws-setup/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/3-cloud-watch-metric/3.1-view-metrics/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/3-github-aws-setup/"
                 />
   </url><url>
-    <loc>//localhost:1313/4-cloud-watch-logs/4.2-logs-insights/</loc>
+    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline-/4-lambda-service-catalog/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/4-cloud-watch-logs/4.2-logs-insights/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/vi/4-lambda-service-catalog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/4-cloud-watch-logs/4.2-logs-insights/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/4-lambda-service-catalog/"
                 />
   </url><url>
-    <loc>//localhost:1313/2-preparatory-steps/</loc>
+    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline-/5-create-sagemaker-project/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/2-preparatory-steps/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/vi/5-create-sagemaker-project/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/2-preparatory-steps/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/5-create-sagemaker-project/"
                 />
   </url><url>
-    <loc>//localhost:1313/3-cloud-watch-metric/3.2-search-expression/</loc>
+    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline-/6-run-validate-pipeline/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/3-cloud-watch-metric/3.2-search-expression/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/vi/6-run-validate-pipeline/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/3-cloud-watch-metric/3.2-search-expression/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/6-run-validate-pipeline/"
                 />
   </url><url>
-    <loc>//localhost:1313/4-cloud-watch-logs/4.3-metric-filter/</loc>
+    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline-/7-clean-up-resources/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/4-cloud-watch-logs/4.3-metric-filter/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/vi/7-clean-up-resources/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/4-cloud-watch-logs/4.3-metric-filter/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/7-clean-up-resources/"
                 />
   </url><url>
-    <loc>//localhost:1313/3-cloud-watch-metric/</loc>
+    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline-/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/3-cloud-watch-metric/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/vi/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/3-cloud-watch-metric/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/categories/"
                 />
   </url><url>
-    <loc>//localhost:1313/3-cloud-watch-metric/3.3-math-expression/</loc>
+    <loc>https://anngyn.github.io/End-to-end-MLOps-Pipeline-/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="//localhost:1313/vi/3-cloud-watch-metric/3.3-math-expression/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/vi/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="//localhost:1313/3-cloud-watch-metric/3.3-math-expression/"
-                />
-  </url><url>
-    <loc>//localhost:1313/4-cloud-watch-logs/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/4-cloud-watch-logs/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/4-cloud-watch-logs/"
-                />
-  </url><url>
-    <loc>//localhost:1313/3-cloud-watch-metric/3.4-dynamic-label/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/3-cloud-watch-metric/3.4-dynamic-label/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/3-cloud-watch-metric/3.4-dynamic-label/"
-                />
-  </url><url>
-    <loc>//localhost:1313/5-cloud-watch-alarm/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/5-cloud-watch-alarm/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/5-cloud-watch-alarm/"
-                />
-  </url><url>
-    <loc>//localhost:1313/6-cloud-watch-dashboard/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/6-cloud-watch-dashboard/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/6-cloud-watch-dashboard/"
-                />
-  </url><url>
-    <loc>//localhost:1313/7-clean-up-resources/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/7-clean-up-resources/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/7-clean-up-resources/"
-                />
-  </url><url>
-    <loc>//localhost:1313/categories/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/categories/"
-                />
-  </url><url>
-    <loc>//localhost:1313/tags/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="//localhost:1313/vi/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="//localhost:1313/tags/"
+                href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/tags/"
                 />
   </url>
 </urlset>

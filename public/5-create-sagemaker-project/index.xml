@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Create SageMaker project on MLOps with SageMaker and GitHub Actions</title>
+    <link>https://anngyn.github.io/End-to-end-MLOps-Pipeline-/5-create-sagemaker-project/</link>
+    <description>Recent content in Create SageMaker project on MLOps with SageMaker and GitHub Actions</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/5-create-sagemaker-project/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

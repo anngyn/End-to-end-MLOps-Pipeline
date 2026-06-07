@@ -5,42 +5,68 @@ chapter: false
 pre: " <b> 7. </b> "
 ---
 
-#### Resource Cleanup
+## Delete SageMaker endpoints
 
-**ℹ️ Information**: Properly cleaning up AWS resources after completing this workshop prevents unexpected charges on your AWS account while allowing you to retain valuable monitoring data for future reference.
+Delete production and staging endpoints first to stop hourly charges:
 
-Follow these steps to remove all workshop resources:
+```bash
+aws sagemaker list-endpoints --region $AWS_REGION
+aws sagemaker delete-endpoint --endpoint-name <endpoint-name> --region $AWS_REGION
+aws sagemaker delete-endpoint-config --endpoint-config-name <endpoint-config-name> --region $AWS_REGION
+```
 
-1. Navigate to AWS CloudFormation:
+## Delete SageMaker project resources
 
-   - In the AWS Management Console search bar, type `CloudFormation`
-   - Select **CloudFormation** from the results
+In SageMaker Studio:
 
-![7.1](/images/7-clean-up-resources/7.1.png)
+1. Open **Projects**.
+2. Select the workshop project.
+3. Delete project resources if Studio exposes cleanup.
 
-2. Delete the CloudFormation stack:
+In CloudFormation, delete stacks created by the SageMaker project and Service Catalog provisioned product.
 
-   - Select the stack you created for this workshop
-   - Click **Delete** to initiate the deletion process
+## Delete Service Catalog resources
 
-![7.2](/images/7-clean-up-resources/7.2.png)
+Delete provisioned product, product, and portfolio association created for the custom template.
 
-3. Confirm the deletion:
+## Delete Lambda and EventBridge
 
-   - Review the resources that will be deleted
-   - Click **Delete** to confirm
+```bash
+aws events list-rules --region $AWS_REGION
+aws lambda list-functions --region $AWS_REGION
+aws lambda delete-function --function-name <lambda-function-name> --region $AWS_REGION
+```
 
-![7.3](/images/7-clean-up-resources/7.3.png)
+Delete Lambda layer versions if no longer needed.
 
-**💡 Pro Tip**: CloudFormation handles the deletion of all resources in the correct order, ensuring proper cleanup without manual intervention.
+## Delete secrets and IAM user
 
-4. Monitor the deletion process:
+```bash
+aws secretsmanager delete-secret \
+  --secret-id github/personal-access-token \
+  --force-delete-without-recovery \
+  --region $AWS_REGION
+```
 
-   - The stack status will change to "DELETE_IN_PROGRESS"
-   - Wait for the stack to be completely removed from the list
+Remove IAM access keys, detach policies, and delete `github-actions-sagemaker-user`.
 
-![7.4](/images/7-clean-up-resources/7.4.png)
+## Delete GitHub secrets
 
-**⚠️ Warning**: While the infrastructure resources will be deleted immediately, CloudWatch Metrics and Logs data will remain available for up to 15 months according to the default retention policy, which may incur minimal storage costs.
+In GitHub repository settings, delete:
 
-**🔒 Security Note**: Consider reviewing your CloudWatch Logs retention policies for production environments to balance compliance requirements with cost optimization.
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `AWS_REGION`
+- `AWS_ACCOUNT_ID`
+
+## Final verification
+
+Check for remaining cost sources:
+
+- SageMaker endpoints.
+- SageMaker training and processing jobs.
+- CloudFormation stacks.
+- S3 buckets and artifacts.
+- Lambda functions and layers.
+- Secrets Manager secrets.
+- CodeConnections connection.

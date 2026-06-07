@@ -1,6 +1,7 @@
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
 canonifyURLs = true
+baseURL = "https://anngyn.github.io/End-to-end-MLOps-Pipeline-/"
 
 # For search functionality
 [outputs]
@@ -19,7 +20,7 @@ home = [ "HTML", "RSS", "JSON"]
   
 [Languages]
 [Languages.en]
-title = "AWS Account Setup"
+title = "MLOps with SageMaker and GitHub Actions"
 weight = 1
 languageName = "English"
 
@@ -30,7 +31,7 @@ url = "https://www.facebook.com/groups/awsstudygroupfcj/"
 weight = 20
 
 [Languages.vi]
-title = "Thiết lập AWS Account"
+title = "MLOps với SageMaker và GitHub Actions"
 weight = 2
 languageName = "Tiếng Việt"
 

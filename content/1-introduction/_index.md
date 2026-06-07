@@ -5,13 +5,45 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-#### Overview
+## Overview
 
-**ℹ️ Information**: In this lab, you will gain hands-on experience with Amazon CloudWatch, AWS's comprehensive monitoring and observability service, through the following tasks:
+In this workshop, you build an MLOps pipeline that uses GitHub as the source code repository and GitHub Actions as the CI/CD engine. SageMaker Pipelines handles ML workflow orchestration, and SageMaker Model Registry controls model promotion.
 
-- Working with **Metrics** sent from sample applications running on pre-configured Amazon EC2 instances
-- Viewing **Logs** from these applications on EC2 instances, then creating **Metrics** from **Logs**
-- Creating **Alarms** based on **Metrics** to receive notifications about system changes
-- Building a custom CloudWatch Dashboard with Custom Metrics and Alarms for enhanced system visibility
+The pattern has two main automation paths:
 
-**💡 Pro Tip**: This workshop is ideal for IT professionals interested in cloud operations who want to leverage CloudWatch for comprehensive system monitoring. You'll learn practical skills that provide an intuitive approach to system observability in AWS environments.
+- Source code changes trigger a GitHub Actions build workflow.
+- Model approval in SageMaker Model Registry triggers a deployment workflow through EventBridge and Lambda.
+
+## Architecture
+
+{{< mermaid >}}
+flowchart TD
+  A[GitHub source repository] --> B[GitHub Actions build workflow]
+  B --> C[SageMaker Pipeline]
+  C --> D[Training job]
+  D --> E[Evaluation step]
+  E --> F[Model package group]
+  F --> G{Model approved?}
+  G -->|Yes| H[EventBridge]
+  H --> I[Lambda]
+  I --> J[GitHub Actions deploy workflow]
+  J --> K[Staging endpoint]
+  K --> L[Production approval]
+  L --> M[Production endpoint]
+{{< /mermaid >}}
+
+## Learning objectives
+
+After finishing this workshop, you can:
+
+- Connect AWS to GitHub with CodeConnections.
+- Store a GitHub token in Secrets Manager for automation.
+- Configure GitHub Actions secrets for AWS access.
+- Deploy a Lambda function that starts GitHub Actions workflow runs.
+- Publish a custom SageMaker project template with Service Catalog.
+- Create a SageMaker project from Studio.
+- Run SageMaker Pipeline and promote a model from staging to production.
+
+## Estimated time and cost
+
+Plan for 90-120 minutes. Cost comes mainly from SageMaker Studio, SageMaker jobs, endpoints, S3, Lambda, and CloudWatch logs. Delete endpoints and stacks at the end.
