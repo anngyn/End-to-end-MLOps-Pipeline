@@ -1,7 +1,7 @@
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
 canonifyURLs = true
-baseURL = "https://anngyn.github.io/End-to-end-MLOps-Pipeline-/"
+baseURL = "https://anngyn.github.io/End-to-end-MLOps-Pipeline/"
 
 # For search functionality
 [outputs]

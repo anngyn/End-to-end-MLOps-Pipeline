@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Run and validate pipeline on MLOps with SageMaker and GitHub Actions</title>
-    <link>https://anngyn.github.io/End-to-end-MLOps-Pipeline-/6-run-validate-pipeline/</link>
+    <link>https://anngyn.github.io/End-to-end-MLOps-Pipeline/6-run-validate-pipeline/</link>
     <description>Recent content in Run and validate pipeline on MLOps with SageMaker and GitHub Actions</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <atom:link href="https://anngyn.github.io/End-to-end-MLOps-Pipeline-/6-run-validate-pipeline/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://anngyn.github.io/End-to-end-MLOps-Pipeline/6-run-validate-pipeline/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

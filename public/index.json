@@ -1,69 +1,69 @@
 [
 {
-	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline-/",
+	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline/",
 	"title": "End-to-End MLOps with SageMaker and GitHub Actions",
 	"tags": [],
 	"description": "",
 	"content": "End-to-End MLOps with SageMaker and GitHub Actions This workshop converts the AWS Machine Learning Blog pattern into a hands-on lab. You will build a custom Amazon SageMaker project template that connects GitHub and GitHub Actions with SageMaker Pipelines, SageMaker Model Registry, staging deployment, and production approval.\nflowchart LR Dev[Developer push] --\u003e GH[GitHub repository] GH --\u003e GHA[GitHub Actions build.yml] GHA --\u003e SMP[SageMaker Pipeline] SMP --\u003e Prep[Data preparation] Prep --\u003e Train[Model training] Train --\u003e Eval[Model evaluation] Eval --\u003e Reg[Model Registry] Reg --\u003e|Approve model| EB[EventBridge rule] EB --\u003e L[Lambda trigger] L --\u003e GHD[GitHub Actions deploy.yml] GHD --\u003e STG[Staging endpoint] STG --\u003e|Manual approval| PRD[Production endpoint] What you will build GitHub repository containing SageMaker pipeline and deployment code. AWS CodeConnections link from AWS to GitHub. Secrets Manager secret that stores a GitHub personal access token. IAM user and GitHub repository secrets used by GitHub Actions. Lambda function and Lambda layer used to trigger GitHub deployment workflow. Service Catalog product that exposes a custom SageMaker project template in Studio. SageMaker project that runs build and deploy workflows from GitHub Actions. Workshop sections Introduction Prerequisites GitHub and AWS setup Lambda and Service Catalog Create SageMaker project Run and validate pipeline Clean up resources Source material This workshop follows the AWS blog post \u0026ldquo;Build an end-to-end MLOps pipeline using Amazon SageMaker Pipelines, GitHub, and GitHub Actions\u0026rdquo; and the aws-samples/mlops-sagemaker-github-actions sample repository.\n"
 },
 {
-	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline-/1-introduction/",
+	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline/1-introduction/",
 	"title": "Introduction",
 	"tags": [],
 	"description": "",
 	"content": "Overview In this workshop, you build an MLOps pipeline that uses GitHub as the source code repository and GitHub Actions as the CI/CD engine. SageMaker Pipelines handles ML workflow orchestration, and SageMaker Model Registry controls model promotion.\nThe pattern has two main automation paths:\nSource code changes trigger a GitHub Actions build workflow. Model approval in SageMaker Model Registry triggers a deployment workflow through EventBridge and Lambda. Architecture flowchart TD A[GitHub source repository] --\u003e B[GitHub Actions build workflow] B --\u003e C[SageMaker Pipeline] C --\u003e D[Training job] D --\u003e E[Evaluation step] E --\u003e F[Model package group] F --\u003e G{Model approved?} G --\u003e|Yes| H[EventBridge] H --\u003e I[Lambda] I --\u003e J[GitHub Actions deploy workflow] J --\u003e K[Staging endpoint] K --\u003e L[Production approval] L --\u003e M[Production endpoint] Learning objectives After finishing this workshop, you can:\nConnect AWS to GitHub with CodeConnections. Store a GitHub token in Secrets Manager for automation. Configure GitHub Actions secrets for AWS access. Deploy a Lambda function that starts GitHub Actions workflow runs. Publish a custom SageMaker project template with Service Catalog. Create a SageMaker project from Studio. Run SageMaker Pipeline and promote a model from staging to production. Estimated time and cost Plan for 90-120 minutes. Cost comes mainly from SageMaker Studio, SageMaker jobs, endpoints, S3, Lambda, and CloudWatch logs. Delete endpoints and stacks at the end.\n"
 },
 {
-	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline-/2-preparatory-steps/",
+	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline/2-preparatory-steps/",
 	"title": "Prerequisites",
 	"tags": [],
 	"description": "",
 	"content": "Required accounts and tools Prepare these items before you start:\nAWS account with permission to create IAM, SageMaker, S3, Lambda, EventBridge, Secrets Manager, CodeConnections, and Service Catalog resources. GitHub account with permission to create a repository, repository secrets, and personal access token. AWS CLI configured locally. Git installed locally. SageMaker Studio domain. Use the new Studio experience if available in your Region. Use one Region for the whole workshop. The AWS blog uses us-east-1; you can choose another supported Region, but keep all resources in the same Region.\nCreate a working folder Open a terminal and set variables:\nexport AWS_REGION=us-east-1 export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text) export GITHUB_OWNER=\u0026lt;your-github-user-or-org\u0026gt; export GITHUB_REPO=mlops-sagemaker-github-actions-workshop Clone the sample repository:\ngit clone https://github.com/aws-samples/mlops-sagemaker-github-actions.git cd mlops-sagemaker-github-actions Create GitHub repository Create an empty GitHub repository named mlops-sagemaker-github-actions-workshop, then push the sample code:\ngit remote remove origin git remote add origin https://github.com/$GITHUB_OWNER/$GITHUB_REPO.git git branch -M main git push -u origin main Security baseline Use least privilege in a real environment. This workshop follows the blog path for learning speed, but production usage should replace long-lived IAM user keys with GitHub OIDC federation.\n"
 },
 {
-	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline-/3-github-aws-setup/",
+	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline/3-github-aws-setup/",
 	"title": "GitHub and AWS setup",
 	"tags": [],
 	"description": "",
 	"content": "Create CodeConnections connection Open the AWS Console. Go to Developer Tools \u0026gt; Settings \u0026gt; Connections. Choose Create connection. Provider: GitHub. Connection name: github-mlops-connection. Complete GitHub authorization and install the connector on your repository or organization. Copy the connection ARN. Set the value locally:\nexport CODECONNECTION_ARN=\u0026lt;connection-arn\u0026gt; Create GitHub personal access token Create a GitHub fine-grained token or classic token with access to the workshop repository. It must be able to trigger workflow dispatch events.\nSave the token in Secrets Manager:\naws secretsmanager create-secret \\ --name github/personal-access-token \\ --secret-string \u0026#39;{\u0026#34;token\u0026#34;:\u0026#34;\u0026lt;github-token\u0026gt;\u0026#34;}\u0026#39; \\ --region $AWS_REGION Create IAM user for GitHub Actions Create an IAM user named github-actions-sagemaker-user. Attach only permissions needed for SageMaker Pipelines, SageMaker jobs, S3 artifacts, ECR if used by the sample, CloudFormation, and CloudWatch logs.\nFor a workshop account, you can start with the policy provided by the sample repository, then tighten it after the lab.\nCreate access keys:\naws iam create-access-key --user-name github-actions-sagemaker-user Add GitHub repository secrets In GitHub, open your repository:\nGo to Settings \u0026gt; Secrets and variables \u0026gt; Actions. Add these repository secrets: Secret name Value AWS_ACCESS_KEY_ID IAM access key ID AWS_SECRET_ACCESS_KEY IAM secret access key AWS_REGION Workshop Region, for example us-east-1 AWS_ACCOUNT_ID AWS account ID Validate setup Confirm access from your terminal:\naws sts get-caller-identity aws codestar-connections list-connections --region $AWS_REGION aws secretsmanager describe-secret --secret-id github/personal-access-token --region $AWS_REGION "
 },
 {
-	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline-/4-lambda-service-catalog/",
+	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline/4-lambda-service-catalog/",
 	"title": "Lambda and Service Catalog",
 	"tags": [],
 	"description": "",
 	"content": "Purpose This section creates the glue layer used by the AWS blog pattern:\nLambda layer contains the Python dependency used to call GitHub APIs. Lambda function receives EventBridge events from SageMaker Model Registry. Service Catalog product exposes the custom SageMaker project template in Studio. Create Lambda layer From the sample repository, find the Lambda layer folder. Package the dependency layer as described by the repository instructions.\nTypical shape:\nmkdir -p lambda-layer/python pip install requests -t lambda-layer/python cd lambda-layer zip -r github-actions-layer.zip python cd .. Publish the layer:\naws lambda publish-layer-version \\ --layer-name github-actions-trigger-layer \\ --zip-file fileb://lambda-layer/github-actions-layer.zip \\ --compatible-runtimes python3.10 python3.11 \\ --region $AWS_REGION Copy the layer version ARN.\nDeploy Lambda trigger Package and deploy the Lambda function from the sample repository. Configure environment variables:\nVariable Description GITHUB_OWNER GitHub user or organization GITHUB_REPO Workshop repository GITHUB_TOKEN_SECRET_NAME github/personal-access-token GITHUB_WORKFLOW_FILE Deployment workflow file, usually deploy.yml The Lambda execution role needs permission to read the GitHub token secret and write CloudWatch logs.\nCreate EventBridge rule Create a rule that listens for SageMaker Model Package state changes. Target the Lambda function. This rule is what connects model approval to GitHub deployment.\nPublish Service Catalog product Use the CloudFormation template from the sample repository to create a Service Catalog product for the custom SageMaker project template.\nThe product should accept parameters such as:\nGitHub owner. GitHub repository. GitHub branch. CodeConnections ARN. SageMaker project name. Model package group name. After product creation, associate it with the portfolio used by SageMaker Studio.\n"
 },
 {
-	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline-/5-create-sagemaker-project/",
+	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline/5-create-sagemaker-project/",
 	"title": "Create SageMaker project",
 	"tags": [],
 	"description": "",
 	"content": "Open SageMaker Studio Open Amazon SageMaker in the AWS Console. Open Studio. Select your user profile. Launch Studio. Create project from custom template In Studio, open Deployments or Projects. Choose Create project. Select the custom template published through Service Catalog. Enter project parameters: Parameter Example Project name github-actions-mlops-demo GitHub owner Your GitHub user or organization GitHub repository mlops-sagemaker-github-actions-workshop GitHub branch main CodeConnections ARN ARN created earlier Model package group github-actions-mlops-demo-model-group Choose Create project. Review created resources After provisioning finishes, validate:\nSageMaker project exists in Studio. Model package group exists in SageMaker Model Registry. GitHub repository contains workflow files. GitHub Actions has access to required secrets. Service Catalog provisioned product shows success. Trigger first build Make a small commit or run workflow manually from GitHub Actions.\ngit commit --allow-empty -m \u0026#34;trigger first sagemaker pipeline run\u0026#34; git push origin main Open GitHub repository \u0026gt; Actions and watch the build workflow. The workflow should call AWS APIs and start SageMaker Pipeline.\n"
 },
 {
-	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline-/6-run-validate-pipeline/",
+	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline/6-run-validate-pipeline/",
 	"title": "Run and validate pipeline",
 	"tags": [],
 	"description": "",
 	"content": "Monitor GitHub Actions build Open your repository in GitHub, then choose Actions. The build workflow should:\nCheck out source code. Configure AWS credentials from repository secrets. Create or update SageMaker Pipeline. Start SageMaker Pipeline execution. If the workflow fails, check:\nAWS_REGION value. IAM user permissions. S3 bucket access. SageMaker execution role. Branch name and repository parameters. Monitor SageMaker Pipeline In SageMaker Studio:\nOpen Pipelines. Select the pipeline created by the project. Open the latest execution. Validate each step. Expected stages:\nProcessing or data preparation. Training. Evaluation. Register model. Approve model Open Model Registry and select the model package group created by the project.\nOpen the latest model package. Review metrics and artifacts. Change approval status to Approved. Approval triggers EventBridge, then Lambda, then GitHub Actions deployment workflow.\nValidate deployment workflow Return to GitHub Actions and open the deployment workflow run.\nThe workflow should deploy or update:\nStaging SageMaker endpoint. Production endpoint after manual approval, depending on repository workflow configuration. Test endpoint Use SageMaker runtime to invoke the endpoint:\naws sagemaker-runtime invoke-endpoint \\ --endpoint-name \u0026lt;endpoint-name\u0026gt; \\ --content-type text/csv \\ --body fileb://sample-payload.csv \\ output.json \\ --region $AWS_REGION cat output.json Troubleshooting Symptom Check GitHub workflow cannot assume or use credentials Repository secrets and IAM permissions Pipeline not created SageMaker execution role and workflow logs Model approval does not trigger deploy EventBridge rule, Lambda logs, secret name Lambda receives event but GitHub workflow does not start GitHub token permissions and workflow file name Endpoint deployment fails Instance quota, model artifact path, endpoint config logs "
 },
 {
-	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline-/7-clean-up-resources/",
+	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline/7-clean-up-resources/",
 	"title": "Clean up resources",
 	"tags": [],
 	"description": "",
 	"content": "Delete SageMaker endpoints Delete production and staging endpoints first to stop hourly charges:\naws sagemaker list-endpoints --region $AWS_REGION aws sagemaker delete-endpoint --endpoint-name \u0026lt;endpoint-name\u0026gt; --region $AWS_REGION aws sagemaker delete-endpoint-config --endpoint-config-name \u0026lt;endpoint-config-name\u0026gt; --region $AWS_REGION Delete SageMaker project resources In SageMaker Studio:\nOpen Projects. Select the workshop project. Delete project resources if Studio exposes cleanup. In CloudFormation, delete stacks created by the SageMaker project and Service Catalog provisioned product.\nDelete Service Catalog resources Delete provisioned product, product, and portfolio association created for the custom template.\nDelete Lambda and EventBridge aws events list-rules --region $AWS_REGION aws lambda list-functions --region $AWS_REGION aws lambda delete-function --function-name \u0026lt;lambda-function-name\u0026gt; --region $AWS_REGION Delete Lambda layer versions if no longer needed.\nDelete secrets and IAM user aws secretsmanager delete-secret \\ --secret-id github/personal-access-token \\ --force-delete-without-recovery \\ --region $AWS_REGION Remove IAM access keys, detach policies, and delete github-actions-sagemaker-user.\nDelete GitHub secrets In GitHub repository settings, delete:\nAWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_REGION AWS_ACCOUNT_ID Final verification Check for remaining cost sources:\nSageMaker endpoints. SageMaker training and processing jobs. CloudFormation stacks. S3 buckets and artifacts. Lambda functions and layers. Secrets Manager secrets. CodeConnections connection. "
 },
 {
-	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline-/categories/",
+	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline/categories/",
 	"title": "Categories",
 	"tags": [],
 	"description": "",
 	"content": ""
 },
 {
-	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline-/tags/",
+	"uri": "https://anngyn.github.io/End-to-end-MLOps-Pipeline/tags/",
 	"title": "Tags",
 	"tags": [],
 	"description": "",
